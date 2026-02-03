@@ -1,5 +1,6 @@
 package com.busra.decisionsupport.ui.input
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -9,7 +10,6 @@ import com.busra.decisionsupport.data.model.PriorityLevel
 import com.busra.decisionsupport.viewmodel.DecisionViewModel
 import com.busra.decisionsupportsimulator.data.model.*
 import com.busra.decisionsupportsimulator.databinding.ActivityMainBinding
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,13 +36,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupSpinners() {
         binding.spinnerRisk.adapter =
-            ArrayAdapter(this, android.R.layout.simple_spinner_item, RiskLevel.values())
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, RiskLevel.values()).apply {
+                setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            }
 
         binding.spinnerResource.adapter =
-            ArrayAdapter(this, android.R.layout.simple_spinner_item, ResourceStatus.values())
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, ResourceStatus.values()).apply {
+                setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            }
 
         binding.spinnerTime.adapter =
-            ArrayAdapter(this, android.R.layout.simple_spinner_item, TimeConstraint.values())
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, TimeConstraint.values()).apply {
+                setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            }
     }
 
     private fun observeResult() {
@@ -54,15 +60,21 @@ class MainActivity : AppCompatActivity() {
             binding.tvAction.text = "Action: ${result.recommendedAction}"
             binding.tvExplanation.text = result.explanation
 
-            val color = when (result.priority) {
-                PriorityLevel.CRITICAL -> getColor(android.R.color.holo_red_dark)
-                PriorityLevel.HIGH -> getColor(android.R.color.holo_orange_dark)
-                PriorityLevel.MEDIUM -> getColor(android.R.color.holo_blue_dark)
-                PriorityLevel.LOW -> getColor(android.R.color.holo_green_dark)
+            // Accent bar rengi (🔥 olay burada)
+            val accentColor = when (result.priority) {
+                PriorityLevel.CRITICAL -> Color.parseColor("#EF4444") // kırmızı
+                PriorityLevel.HIGH -> Color.parseColor("#F97316")     // turuncu
+                PriorityLevel.MEDIUM -> Color.parseColor("#3B82F6")   // mavi
+                PriorityLevel.LOW -> Color.parseColor("#10B981")      // yeşil
             }
 
-            binding.cardResult.setCardBackgroundColor(color)
+            binding.viewAccent.setBackgroundColor(accentColor)
+
+            // Kart arka planı hep soft kalsın
+            binding.cardResult.setCardBackgroundColor(
+                Color.parseColor("#F0F7FF")
+            )
         }
     }
-
 }
+// ui değişikliği yapıldı

@@ -1,72 +1,180 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="#F4F5FB">
 
-    <!-- Spinners -->
-    <Spinner
-        android:id="@+id/spinnerRisk"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <Spinner
-        android:id="@+id/spinnerResource"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"/>
-    <Spinner
-        android:id="@+id/spinnerTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"/>
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <!-- Evaluate Button -->
-    <Button
-        android:id="@+id/btnEvaluate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Evaluate Decision"
-        android:layout_marginTop="16dp"/>
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Decision Support Simulator"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#1F1F1F"/>
 
-    <!-- Result Card -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardResult"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:visibility="gone"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="6dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Evaluate decisions based on risk, resources and time."
+            android:textSize="14sp"
+            android:textColor="#6B6B6B"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="20dp"/>
 
-        <LinearLayout
+        <!-- Parameters Card -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@android:color/white">
 
-            <TextView
-                android:id="@+id/tvPriority"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
 
-            <TextView
-                android:id="@+id/tvAction"
-                android:layout_marginTop="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Parameters"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginBottom="14dp"/>
 
-            <TextView
-                android:id="@+id/tvExplanation"
-                android:layout_marginTop="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
+                <!-- Risk -->
+                <TextView
+                    android:text="Risk Level"
+                    android:textSize="13sp"
+                    android:textColor="#555555"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-    </com.google.android.material.card.MaterialCardView>
+                <Spinner
+                    android:id="@+id/spinnerRisk"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:drawable/editbox_background"/>
 
-</LinearLayout>
+                <!-- Resource -->
+                <TextView
+                    android:text="Resource Availability"
+                    android:textSize="13sp"
+                    android:textColor="#555555"
+                    android:layout_marginTop="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <Spinner
+                    android:id="@+id/spinnerResource"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:drawable/editbox_background"/>
+
+                <!-- Time -->
+                <TextView
+                    android:text="Time Constraint"
+                    android:textSize="13sp"
+                    android:textColor="#555555"
+                    android:layout_marginTop="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <Spinner
+                    android:id="@+id/spinnerTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:drawable/editbox_background"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- CTA Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEvaluate"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="24dp"
+            android:text="Evaluate Decision"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:textColor="#1F2937"
+            app:cornerRadius="18dp"
+            app:backgroundTint="#FFFFFF"
+            app:strokeWidth="1dp"
+            app:strokeColor="#E3E6F0"
+            app:rippleColor="#11000000"
+            android:elevation="3dp"/>
+
+        <!-- Result Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:visibility="gone"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#F0F7FF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Accent Bar -->
+                <View
+                    android:id="@+id/viewAccent"
+                    android:layout_width="6dp"
+                    android:layout_height="match_parent"
+                    android:background="#3B82F6"/>
+
+                <!-- Content -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:id="@+id/tvPriority"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#1E3A8A"/>
+
+                    <TextView
+                        android:id="@+id/tvAction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textSize="15sp"
+                        android:textColor="#1F2937"/>
+
+                    <TextView
+                        android:id="@+id/tvExplanation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="13sp"
+                        android:textColor="#475569"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</ScrollView>
+
